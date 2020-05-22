@@ -1,19 +1,69 @@
 import React from 'react';
 
-const welcome = {
-  greeting: 'Hey',
-  title: 'React',
-};
+const App = () => {
+  const stories = [
+    {
+      title: 'React',
+      url: 'https://reactjs.org',
+      author: 'Jordan Walke',
+      numComments: 3,
+      points: 4,
+      objectID: 0,
+    },
+    {
+      title: 'Redux',
+      url: 'https://redux.js.org',
+      author: 'Dan Abramov, Andrew Clark',
+      numComments: 2,
+      points: 3,
+      objectID: 1,
+    }
+  ];
 
-function App() {
+  const [searchTerm, setSearchTerm] = React.useState('React');
+
+  const handleSearch = event => {
+    setSearchTerm(event.target.value);
+  }
+
+  const searchedStories = stories.filter(story =>
+    story.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div>
-      <h1>{welcome.greeting} {welcome.title}</h1>
-
-      <label htmlFor="search">Search</label>
-      <input id="search" type="text"/>
+      <h1>My HN Stories</h1>
+      <Search search={searchTerm} onSearch={handleSearch}/>
+      <hr/>
+      <List list={searchedStories}/>
     </div>
   );
-}
+};
+
+const Search = ({ search, onSearch }) => (
+  <div>
+    <label htmlFor="search">Search: </label>
+    <input 
+      id="search" 
+      type="text" 
+      value={search}
+      onChange={onSearch}
+    />
+  </div>
+);
+
+const List = ({ list }) =>
+  list.map(item => <Item key={item.objectID} item={item} />);
+
+const Item = ({ item }) => (
+  <div>
+    <span>
+      <a href={item.url}>{item.title}</a>
+    </span>
+    <span>{item.author}</span>
+    <span>{item.numComments}</span>
+    <span>{item.points}</span>
+  </div>
+);
 
 export default App;
