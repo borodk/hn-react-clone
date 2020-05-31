@@ -9,6 +9,11 @@ body {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+hr {
+  border: 1px solid #440BD4;
+  margin: 20px 0;
+}
+
 a {
   color: #FF2079;
 }
