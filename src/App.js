@@ -1,4 +1,5 @@
 import React from 'react';
+import './App.css';
 
 const API_ENDPOINT = 'https://hn.algolia.com/api/v1/search?query=';
 
@@ -112,7 +113,7 @@ const App = () => {
 
   return (
     <div>
-      <h1>// hacker news</h1>
+      <h1>// hacker news viewer</h1>
       <InputWithLabel
         id="search"
         value={searchTerm}
@@ -192,14 +193,14 @@ const Item = ({ item, onRemoveItem }) => {
     onRemoveItem(item);
 
   return (
-    <div>
-      <span>
+    <div class="story-item">
+      <span class="story-link">
         <a href={item.url}>{item.title}</a>
       </span>
-      <span>{item.author}</span>
-      <span>{item.numComments}</span>
-      <span>{item.points}</span>
-      <span>
+      <span class="story-author">{item.author}</span>
+      <span class="story-comments">{item.numComments}</span>
+      <span class="story-points">{item.points}</span>
+      <span class="story-dismiss">
         <button type="button" onClick={handleRemoveItem}>
           Dismiss
         </button>
