@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import './App.css';
+import List from './components/List';
+import SearchForm from './components/SearchForm';
 
 const API_ENDPOINT = 'https://hn.algolia.com/api/v1/search?query=';
 
@@ -48,27 +50,6 @@ const storiesReducer = (state, action) => {
       throw new Error();
   }
 };
-
-const SearchForm = ({
-  searchTerm,
-  onSearchInput,
-  onSearchSubmit,
-}) => (
-  <form onSubmit={onSearchSubmit}>
-    <InputWithLabel
-      id="search"
-      value={searchTerm}
-      isFocused
-      onInputChange={onSearchInput}
-    >
-      <strong>Search:</strong>
-    </InputWithLabel>
-
-    <button type="submit" disabled={!searchTerm}>
-      Submit
-    </button>
-  </form>
-);
 
 const App = () => {
 
@@ -147,68 +128,6 @@ const App = () => {
           onRemoveItem={handleRemoveStory} 
         />
       )}
-    </div>
-  );
-};
-
-const InputWithLabel = ({ 
-  id, 
-  value,
-  type='text',
-  onInputChange,
-  isFocused,
-  children,
-}) => {
-  const inputRef = React.useRef();
-
-  React.useEffect(() =>  {
-    if (isFocused && inputRef.current) {
-      inputRef.current.focus();
-    }
-  }, [isFocused]);
-
-  return (
-    <>
-      <label htmlFor={id}>{children}</label>
-      &nbsp;
-      <input
-        ref={inputRef}
-        id={id}
-        type={type} 
-        value={value}
-        autoFocus={isFocused}
-        onChange={onInputChange}
-      />
-    </>
-  );
-};
-
-const List = ({ list, onRemoveItem }) =>
-  list.map(item => (
-    <Item 
-      key={item.objectID} 
-      item={item}
-      onRemoveItem={onRemoveItem}
-    />
-  ));
-
-const Item = ({ item, onRemoveItem }) => {
-  const handleRemoveItem = () =>
-    onRemoveItem(item);
-
-  return (
-    <div class="story-item">
-      <span class="story-link">
-        <a href={item.url}>{item.title}</a>
-      </span>
-      <span class="story-author">{item.author}</span>
-      <span class="story-comments">{item.numComments}</span>
-      <span class="story-points">{item.points}</span>
-      <span class="story-dismiss">
-        <button type="button" onClick={handleRemoveItem}>
-          Dismiss
-        </button>
-      </span>
     </div>
   );
 };
