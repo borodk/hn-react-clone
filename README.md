@@ -1,3 +1,6 @@
+A viewer for news.ycombinator.com built with React.
+![Alt text](screenshot.png?raw=true "hn viewer screenshot")
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

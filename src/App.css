@@ -1,36 +1,44 @@
 html {
-  background-color: black;
+  background-color:#011627;
 }
 
 body {
   margin: 26px;
   /*color: #440BD4;*/
-  color: #B8FB3C;
+  color: #ADDB67;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 hr {
-  border: 1px solid #440BD4;
+  border: 1px solid #C792EA;
   margin: 20px 0;
 }
 
 a {
-  color: #FF2079;
+  color:#FF5874;
 }
 
 a:visited,
 a:hover,
 a:active {
-  color: #E92EFB;
+  color: #D6DEEB;
 }
 
 button {
-  background-color: #E92EFB;
-  border: 1px solid #FF2079;
+  background-color: #7FDBCA;
+  border: none;
 }
 
 .story-item {
   margin: 5px 0;
+}
+
+.story-author {
+  color: #C792EA;
+}
+
+.story-points {
+  color:#82AAEB;
 }
 
 .story-link,
